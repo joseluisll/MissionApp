@@ -6,20 +6,27 @@ Ext.define('MissionApp.controller.CMAPIController', {
 
     init: function () {
         var me=this;
-        this.runtimes=[cmajs.runtimes.browser];
-        cmajs.init(me);
+        var object=new Object();
+        object.runtimes=[cmajs.runtimes.browser.pubSub];
+        cmajs.init(object);
         cmajs.subscribe([{
-            channel: "map.message.complete",
+            channel: cmajs.channels.MAP_ERROR,
             callback: me.handleMessageComplete
         }, {
-            channel: "map.message.progress",
+            channel: cmajs.channels.MAP_MESSAGE_PROGRESS,
             callback: me.handleMessageProgress
         }]);
+        cmajs.publish({
+            channel:cmajs.channels.MAP_ERROR,
+            message:cmapi.channel[cmajs.channels.MAP_ERROR].examples[0]
+            }
+        );
     },
     handleMessageComplete:function(args) {
-
+        console.log('Browser runtime handleMessageComplete.');
     },
     handleMessageProgress:function(args) {
+        console.log('Browser runtime handleMessageProgress.');
 
     }
 

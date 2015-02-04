@@ -85,6 +85,9 @@ Ext.define('MissionApp.view.main.MainController', {
         });
 
         cmp.on('select',me.onRowSelect,me);
+        cmp.on('edit',me.onRowUpdate,me);
+
+
 
         var v=Ext.ComponentQuery.query('#MISSION_DATA_PANEL');
         var vc=v[0];
@@ -114,6 +117,19 @@ Ext.define('MissionApp.view.main.MainController', {
         var object=new Object();
         object.operation='FEATURE_SELECTED';
         object.id=record.id;
+        me.fireEvent('onMessageRequest',Ext.JSON.encode(object),me);
+        console.debug(Ext.JSON.encode(object));
+    },
+    onRowUpdate:function( editor, context, eOpts) {
+        var me=this;
+        var object=new Object();
+        var record=context.record;
+        //A row has been updated. We can propagate this update to other components. var object=new Object();
+        object.operation='FEATURE_UPDATED';
+        object.id=record.id;
+        object.name=record.name;
+        object.coordinateX=record.coordinateX;
+        object.coordinateY=record.coordinateY;
         me.fireEvent('onMessageRequest',Ext.JSON.encode(object),me);
         console.debug(Ext.JSON.encode(object));
     },

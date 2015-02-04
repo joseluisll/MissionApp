@@ -16,7 +16,7 @@ Ext.define('MissionApp.Application', {
 
     controllers:[
         //I ADD A REFERENCE TO ALL CONTROLLERS
-        'IoController','MissionController'
+        'IoController','MissionController','CMAPIController'
     ],
     views: [
         //THERE IS NO NEED TO REFERENCE THE MAINVIEW!!!Also, the View Controller will communicate with the rest of the controllers

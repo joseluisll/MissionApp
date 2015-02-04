@@ -31,8 +31,8 @@ var cmajs = (function () {
   function getMessageContainer(args) {
     var mid,
       container;
-    if (args.payload.hasOwnProperty("messageId")) {
-      mid = args.payload.messageId;
+    if (args.message.payload.hasOwnProperty("messageId")) {
+      mid = args.message.payload.messageId;
     } else {
       mid = cmajsInterface.utils.getUUID();
     }
@@ -48,7 +48,7 @@ var cmajs = (function () {
     container = {
       valid: false,
       errors: [],
-      payload: args.payload,
+      payload: args.message.payload,
       messageId: mid,
       channel: args.channel,
       cancel: cancel
@@ -156,6 +156,7 @@ var cmajs = (function () {
       MAP_MENU_REMOVE: "map.menu.remove",
       MAP_MESSAGE_CANCEL: "map.message.cancel",
       MAP_MESSAGE_PROGRESS: "map.message.progress",
+      MAP_MESSAGE_COMPLETE: "map.message.complete",
       MAP_OVERLAY_CLUSTER_ACTIVATE: "map.overlay.cluster.activate",
       MAP_OVERLAY_CLUSTER_DEACTIVATE: "map.overlay.cluster.deactivate",
       MAP_OVERLAY_CLUSTER_REMOVE: "map.overlay.cluster.remove",
@@ -599,9 +600,9 @@ var cmajs = (function () {
     var success = false;
 
 
-    cmajs.runtime.browser.mediator.publish({
+    cmajs.runtimes.browser.mediator.publish({
       channel: args.channel,
-      message: args.message,
+      message: args.payload,
       sender: {
         id: senderId
       }
@@ -615,7 +616,7 @@ var cmajs = (function () {
   template.pubSub.subscribe = function (args) {
     var success = false;
 
-    cmajs.runtime.browser.mediator.subscribe({
+    cmajs.runtimes.browser.mediator.subscribe({
       channel: args.channel,
       callback: args.callback
     });

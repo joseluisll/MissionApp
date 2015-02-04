@@ -2,7 +2,7 @@
  * Created by Jose Luis on 14/01/2015.
  */
 
-Ext.define('Aircraft', {
+Ext.define('Airbase', {
     extend: 'Ext.data.Model',
     fields: [
         'name',

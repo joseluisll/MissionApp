@@ -34,7 +34,7 @@ Ext.define('MissionApp.view.main.MainController', {
 
         Ext.create('Ext.data.Store', {
             storeId:'airbaseStore',
-            fields:['name', 'coordinateX', 'coordinateY'],
+            fields:['id','name', 'coordinateX', 'coordinateY'],
             data: [
                 //// long, lat
                 {"id":generateUUID(),"name":"Ramstein", "coordinateX":"-10764594.0", "coordinateY":"4523072.0"},//COORDINATE OF SOMEWERE IN BOSTON
@@ -150,7 +150,7 @@ Ext.define('MissionApp.view.main.MainController', {
         for(index=0;index<model_objects.items.length;++index)
         {
             var object=model_objects.items[index];
-            if(jsonObject.id=== e.id){
+            if(jsonObject.id=== object.id){
                 //FOUND IT!!!
                 found=true;
                 break;
@@ -162,6 +162,10 @@ Ext.define('MissionApp.view.main.MainController', {
         }
 
         //3.- if not, create it
+        var model_store=table.getStore();
+        model_store.add(jsonObject);
+
+
         console.log('Added a new Feature from the MAPAPP.');
 
     },

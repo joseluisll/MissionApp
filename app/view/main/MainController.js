@@ -215,15 +215,14 @@ Ext.define('MissionApp.view.main.MainController', {
 
 
     },
-    onProcessHTML5Message:function(e) {
+    onProcessHTML5Message:function(evt) {
         var me=this;
         var event_panel = Ext.ComponentQuery.query('#MISSION_EVENT_PANEL')[0];
         var label=Ext.create ('Ext.form.Label', {
-                html: '<p>'+ e+'</p>'
+                html: '<p>'+ Ext.JSON.encode(evt)+'</p>'
             }
         );
         event_panel.add(label);
-        var evt=Ext.JSON.decode(e);
 
         if(evt.operation==='FEATURE_SELECTED') {
             me.onFeatureSelected(evt);

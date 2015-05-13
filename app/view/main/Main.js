@@ -55,25 +55,26 @@ Ext.define('MissionApp.view.main.Main', {
                         text: 'Add Airbase',
                         itemId: 'ADD_AIRBASE',
                         handler: 'onClickButton'
-                    }]},
-                {
-                    xtype: 'panel',
-                    itemId:'MISSION_EVENT_PANEL',
-                    width:250,
-                    split:true,
-                    height:400,
-                    autoScroll:true,
-                    items: [{
-                        html: '<p><ul><li>LIST OF EVENTS</li></ul></p>'
-                    }
-                    ]
-                }
+                    }]}
             ]
         },{
             xtype:'panel',
             region:'center',
             itemId:'MISSION_DATA_PANEL',
             split:true
+        },{
+            xtype: 'panel',
+            itemId:'MISSION_EVENT_PANEL',
+            region:'south',
+            width:250,
+            split:true,
+            height:250,
+            autoScroll:true,
+            items: [{
+                html: '<p><ul><li>LIST OF EVENTS</li></ul></p>'
+            }
+            ]
+
         }
     ]
 });

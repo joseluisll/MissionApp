@@ -27,13 +27,13 @@ Ext.define('MissionApp.controller.IoController', {
         //REGISTER THE MESSAGE HANDLER
         if (window.addEventListener){ //handle different browsers case
             window.addEventListener("message",function(evt) {
-                console.log('IoController recibe un mensaje...'+evt.data);
+                console.log('IoController recibe un mensaje...');
                 me.fireEvent('onProcessHTML5Message',Ext.JSON.decode(evt.data),me);
             }, false);
 
         } else {
             window.attachEvent("onmessage",function(evt) {
-                console.log('IoController recibe un mensaje...'+evt.data);
+                console.log('IoController recibe un mensaje...');
                 me.fireEvent('onProcessHTML5Message',Ext.JSON.decode(evt.data),me);
             }, false);
         }
@@ -53,7 +53,7 @@ Ext.define('MissionApp.controller.IoController', {
         object.operation='MISSIONAPP_KEEPALIVE';
         me.keepalive = function(){
 
-            if(me.mapwindow.closed===true || me.mapwindow===null || me.mapwindow===undefined ){
+            if(me.mapwindow===null || me.mapwindow===undefined || me.mapwindow.closed===true  || me.mapwindow.closed===undefined){
                 console.info('The MAPAPP window has been closed...');
                 me.mapwindow=null;
                 me.keepalive=null;

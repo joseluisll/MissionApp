@@ -7,6 +7,7 @@ Ext.define('MissionApp.controller.CMAPIController', {
     init: function () {
         var me=this;
         var object=new Object();
+
         object.runtimes=[cmajs.runtimes.browser.pubSub];
         cmajs.init(object);
         cmajs.subscribe([{
